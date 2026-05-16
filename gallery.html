@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>포토 갤러리 — 김승재 ❤️ 이다형 2026.07.29</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #faf7f2;
+    --cream: #f3ede3;
+    --warm-white: #fffdf9;
+    --gold: #b8975a;
+    --gold-light: #d4b483;
+    --gold-dark: #8a6d3b;
+    --sage: #8a9d8a;
+    --dusty-rose: #c9a09a;
+    --charcoal: #2c2c2c;
+    --text-dark: #3a3028;
+    --text-mid: #6b5e52;
+    --text-light: #a09080;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #e8e0d5;
+    color: var(--text-dark);
+    font-family: 'Noto Serif KR', serif;
+    overflow-x: hidden;
+  }
+
+  .page-wrap {
+    background: var(--ivory);
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ── HEADER ── */
+  .gallery-header {
+    background: var(--text-dark);
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gallery-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(184,151,90,0.15) 0%, transparent 70%);
+  }
+
+  .back-btn {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-family: 'Cormorant Garamond', serif;
+    z-index: 2;
+  }
+  .back-btn:hover { color: var(--gold-light); }
+
+  .header-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.45em;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    display: block;
+    position: relative;
+    z-index: 2;
+  }
+
+  .header-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 9vw, 2.8rem);
+    font-weight: 300;
+    color: white;
+    line-height: 1.2;
+    position: relative;
+    z-index: 2;
+  }
+
+  .header-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .header-sub {
+    margin-top: 0.8rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.2em;
+    position: relative;
+    z-index: 2;
+  }
+
+  .header-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin: 1.2rem 0 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .header-divider::before,
+  .header-divider::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold-light);
+    opacity: 0.4;
+  }
+
+  .header-divider span {
+    color: var(--gold-light);
+    font-size: 0.55rem;
+    letter-spacing: 0.35em;
+    opacity: 0.7;
+  }
+
+  /* ── PHOTO COUNT BADGE ── */
+  .photo-count-bar {
+    background: var(--cream);
+    padding: 0.9rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(184,151,90,0.15);
+  }
+
+  .photo-count-text {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    letter-spacing: 0.08em;
+  }
+
+  .photo-count-text strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--gold-dark);
+    font-weight: 400;
+  }
+
+  /* ── UPLOAD SECTION ── */
+  .upload-section {
+    padding: 2rem 1.5rem;
+    background: var(--warm-white);
+    border-bottom: 1px solid rgba(184,151,90,0.12);
+  }
+
+  .upload-label-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: block;
+    text-align: center;
+  }
+
+  .upload-name-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    background: white;
+    border: 1px solid rgba(184,151,90,0.3);
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    outline: none;
+    margin-bottom: 0.8rem;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  .upload-name-input:focus { border-color: var(--gold); }
+  .upload-name-input::placeholder { color: var(--text-light); }
+
+  .upload-drop-zone {
+    border: 1.5px dashed rgba(184,151,90,0.45);
+    background: rgba(250,247,242,0.8);
+    padding: 2rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    margin-bottom: 0.8rem;
+  }
+
+  .upload-drop-zone:hover,
+  .upload-drop-zone.dragover {
+    border-color: var(--gold);
+    background: rgba(212,180,131,0.08);
+  }
+
+  .upload-drop-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+
+  .upload-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.6rem;
+    display: block;
+    pointer-events: none;
+  }
+
+  .upload-drop-text {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    letter-spacing: 0.05em;
+    pointer-events: none;
+    line-height: 1.6;
+  }
+
+  .upload-drop-hint {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    margin-top: 0.3rem;
+    pointer-events: none;
+  }
+
+  /* Preview thumbnails */
+  .preview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin-bottom: 0.8rem;
+  }
+
+  .preview-thumb {
+    aspect-ratio: 1;
+    overflow: hidden;
+    position: relative;
+    background: var(--cream);
+  }
+
+  .preview-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  .preview-thumb .remove-btn {
+    position: absolute;
+    top: 2px; right: 2px;
+    width: 18px; height: 18px;
+    background: rgba(0,0,0,0.55);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  .upload-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--text-dark);
+    color: var(--gold-light);
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .upload-btn:hover:not(:disabled) {
+    background: var(--gold-dark);
+    color: white;
+  }
+
+  .upload-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Progress bar */
+  .progress-wrap {
+    margin-top: 0.8rem;
+    display: none;
+  }
+
+  .progress-wrap.visible { display: block; }
+
+  .progress-bar-bg {
+    height: 3px;
+    background: rgba(184,151,90,0.2);
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  .progress-text {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    text-align: center;
+    margin-top: 0.4rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── GALLERY GRID ── */
+  .gallery-section {
+    padding: 1.5rem 0 3rem;
+  }
+
+  .gallery-section-header {
+    padding: 0 1.5rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .gallery-section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(184,151,90,0.25);
+  }
+
+  .gallery-section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    padding: 0 3px;
+  }
+
+  .photo-item {
+    aspect-ratio: 1;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    background: var(--cream);
+    animation: fadeIn 0.4s ease both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .photo-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+
+  .photo-item:hover img { transform: scale(1.06); }
+
+  .photo-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(30,22,14,0.65) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.5rem;
+  }
+
+  .photo-item:hover .photo-item-overlay { opacity: 1; }
+
+  .photo-uploader-name {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+
+  /* Empty state */
+  .empty-state {
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .empty-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+
+  .empty-text {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+  }
+
+  /* Loading skeleton */
+  .skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    padding: 0 3px;
+  }
+
+  .skeleton-item {
+    aspect-ratio: 1;
+    background: linear-gradient(90deg, var(--cream) 0%, rgba(255,255,255,0.6) 50%, var(--cream) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,8,5,0.95);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .lightbox.active { display: flex; }
+
+  .lightbox-img-wrap {
+    position: relative;
+    max-width: 92vw;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 1.2rem; right: 1.2rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 1.8rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+    transition: color 0.2s;
+    z-index: 10;
+  }
+
+  .lightbox-close:hover { color: white; }
+
+  .lightbox-info {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .lightbox-uploader {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+  }
+
+  .lightbox-date {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.1em;
+    margin-top: 0.2rem;
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+    border-radius: 0;
+  }
+
+  .lightbox-nav:hover {
+    background: rgba(184,151,90,0.3);
+    color: white;
+  }
+
+  .lightbox-prev { left: -3rem; }
+  .lightbox-next { right: -3rem; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--text-dark);
+    color: var(--gold-light);
+    padding: 0.75rem 1.6rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    z-index: 2000;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ── FOOTER ── */
+  .gallery-footer {
+    background: var(--text-dark);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .footer-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .footer-names em { font-style: italic; color: var(--gold-light); }
+
+  .footer-date {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .footer-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+    padding: 0.7rem 1.6rem;
+    border: 1px solid rgba(184,151,90,0.4);
+    color: var(--gold-light);
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: all 0.25s;
+  }
+
+  .footer-back:hover {
+    background: rgba(184,151,90,0.15);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal { animation: fadeUp 0.7s ease both; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- HEADER -->
+  <div class="gallery-header">
+    <a class="back-btn" href="index.html">← 청첩장으로</a>
+    <span class="header-label">Photo Gallery</span>
+    <h1 class="header-title">우리의 <em>하루</em></h1>
+    <p class="header-sub">2026 · 07 · 29</p>
+    <div class="header-divider">
+      <span>WEDDING DAY MEMORIES</span>
+    </div>
+  </div>
+
+  <!-- PHOTO COUNT -->
+  <div class="photo-count-bar">
+    <span class="photo-count-text">등록된 사진 <strong id="photo-count">0</strong>장</span>
+    <span style="font-size:0.72rem;color:var(--text-light);letter-spacing:0.05em;">소중한 순간들 🌸</span>
+  </div>
+
+  <!-- UPLOAD SECTION -->
+  <div class="upload-section reveal">
+    <span class="upload-label-text">Upload Your Photos</span>
+
+    <input
+      type="text"
+      class="upload-name-input"
+      id="uploader-name"
+      placeholder="이름을 입력해주세요"
+      maxlength="20"
+    />
+
+    <div class="upload-drop-zone" id="drop-zone">
+      <input type="file" id="file-input" accept="image/*" multiple />
+      <span class="upload-icon">📷</span>
+      <p class="upload-drop-text">사진을 선택하거나<br>여기에 끌어다 놓으세요</p>
+      <p class="upload-drop-hint">최대 10장 · JPG, PNG, HEIC 지원</p>
+    </div>
+
+    <div class="preview-grid" id="preview-grid"></div>
+
+    <button class="upload-btn" id="upload-btn" onclick="uploadPhotos()" disabled>
+      <span>📤</span>
+      <span id="upload-btn-text">사진 업로드</span>
+    </button>
+
+    <div class="progress-wrap" id="progress-wrap">
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+      <p class="progress-text" id="progress-text">업로드 중...</p>
+    </div>
+  </div>
+
+  <!-- GALLERY GRID -->
+  <div class="gallery-section">
+    <div class="gallery-section-header">
+      <span class="gallery-section-label">All Photos</span>
+    </div>
+
+    <!-- Skeleton loading -->
+    <div class="skeleton-grid" id="skeleton-grid">
+      <div class="skeleton-item"></div>
+      <div class="skeleton-item"></div>
+      <div class="skeleton-item"></div>
+      <div class="skeleton-item"></div>
+      <div class="skeleton-item"></div>
+      <div class="skeleton-item"></div>
+    </div>
+
+    <div class="photo-grid" id="photo-grid" style="display:none;"></div>
+    <div class="empty-state" id="empty-state" style="display:none;">
+      <span class="empty-icon">🌸</span>
+      <p class="empty-text">아직 등록된 사진이 없어요.<br>소중한 순간을 첫 번째로 올려주세요!</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="gallery-footer">
+    <p class="footer-names"><em>Seungjae</em> &amp; <em>Dahyung</em></p>
+    <p class="footer-date">2026 · 07 · 29 · WEDNESDAY</p>
+    <a class="footer-back" href="index.html">← 청첩장으로 돌아가기</a>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOnOverlay(event)">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <div class="lightbox-img-wrap">
+    <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)">‹</button>
+    <img id="lightbox-img" src="" alt="" />
+    <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)">›</button>
+  </div>
+  <div class="lightbox-info">
+    <p class="lightbox-uploader" id="lightbox-uploader"></p>
+    <p class="lightbox-date" id="lightbox-date"></p>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ① Firebase SDK 먼저 로드 -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<!-- ② 모든 로직을 하나의 스크립트 블록에 순서대로 작성 -->
+<script>
+  /* ── Cloudinary 설정 ── */
+  var CLOUDINARY_CLOUD  = 'dfsmcxi1d';
+  var CLOUDINARY_PRESET = 'wedding';
+
+  /* ── Firebase 초기화 ── */
+  var firebaseConfig = {
+    apiKey: "AIzaSyAIrpLgrC68d5EBIq9LIJ_mlVE7o9DGzcM",
+    authDomain: "seungjaedahyungwedding.firebaseapp.com",
+    projectId: "seungjaedahyungwedding",
+    storageBucket: "seungjaedahyungwedding.firebasestorage.app",
+    messagingSenderId: "784754222348",
+    appId: "1:784754222348:web:eb071bc9cfc711e0871529"
+  };
+  var fbApp;
+  try { fbApp = firebase.app('gallery'); }
+  catch(e) { fbApp = firebase.initializeApp(firebaseConfig, 'gallery'); }
+  var db = firebase.firestore(fbApp);
+
+  /* ── Toast ── */
+  function showToast(msg, duration) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, duration || 2800);
+  }
+
+  /* ── 파일 선택 & 미리보기 ── */
+  var selectedFiles = [];
+
+  document.getElementById('file-input').addEventListener('change', function(e) {
+    handleFiles(Array.from(e.target.files));
+  });
+
+  var dropZone = document.getElementById('drop-zone');
+  dropZone.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    dropZone.classList.add('dragover');
+  });
+  dropZone.addEventListener('dragleave', function() {
+    dropZone.classList.remove('dragover');
+  });
+  dropZone.addEventListener('drop', function(e) {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    handleFiles(Array.from(e.dataTransfer.files).filter(function(f) {
+      return f.type.startsWith('image/');
+    }));
+  });
+
+  function handleFiles(files) {
+    var remaining = 10 - selectedFiles.length;
+    if (remaining <= 0) { showToast('최대 10장까지 업로드할 수 있어요'); return; }
+    files = files.slice(0, remaining);
+    files.forEach(function(file) { selectedFiles.push(file); });
+    renderPreviews();
+    updateUploadBtn();
+  }
+
+  function renderPreviews() {
+    var grid = document.getElementById('preview-grid');
+    grid.innerHTML = '';
+    selectedFiles.forEach(function(file, idx) {
+      var wrap = document.createElement('div');
+      wrap.className = 'preview-thumb';
+      var img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      var btn = document.createElement('button');
+      btn.className = 'remove-btn';
+      btn.textContent = '×';
+      btn.onclick = function(e) {
+        e.stopPropagation();
+        selectedFiles.splice(idx, 1);
+        renderPreviews();
+        updateUploadBtn();
+      };
+      wrap.appendChild(img);
+      wrap.appendChild(btn);
+      grid.appendChild(wrap);
+    });
+  }
+
+  function updateUploadBtn() {
+    var btn = document.getElementById('upload-btn');
+    var txt = document.getElementById('upload-btn-text');
+    btn.disabled = selectedFiles.length === 0;
+    txt.textContent = selectedFiles.length > 0
+      ? selectedFiles.length + '장 업로드하기'
+      : '사진 업로드';
+  }
+
+  /* ── Lightbox ── */
+  var allPhotos = [];
+  var currentLightboxIdx = 0;
+
+  function openLightbox(idx) {
+    currentLightboxIdx = idx;
+    var photo = allPhotos[idx];
+    document.getElementById('lightbox-img').src = photo.url;
+    document.getElementById('lightbox-uploader').textContent = photo.uploader + ' 님이 올린 사진';
+    document.getElementById('lightbox-date').textContent = photo.date;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeLightboxOnOverlay(e) {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  }
+
+  function lightboxNav(dir) {
+    var newIdx = currentLightboxIdx + dir;
+    if (newIdx < 0) newIdx = allPhotos.length - 1;
+    if (newIdx >= allPhotos.length) newIdx = 0;
+    openLightbox(newIdx);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (!document.getElementById('lightbox').classList.contains('active')) return;
+    if (e.key === 'ArrowLeft') lightboxNav(-1);
+    if (e.key === 'ArrowRight') lightboxNav(1);
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  /* ── 갤러리 렌더링 ── */
+  function renderGallery(photos) {
+    allPhotos = photos;
+    document.getElementById('skeleton-grid').style.display = 'none';
+    document.getElementById('photo-count').textContent = photos.length;
+
+    var grid  = document.getElementById('photo-grid');
+    var empty = document.getElementById('empty-state');
+
+    if (photos.length === 0) {
+      grid.style.display  = 'none';
+      empty.style.display = 'block';
+      return;
+    }
+
+    grid.style.display  = 'grid';
+    empty.style.display = 'none';
+    grid.innerHTML = '';
+
+    photos.forEach(function(photo, idx) {
+      var item = document.createElement('div');
+      item.className = 'photo-item';
+      item.style.animationDelay = (idx * 0.04) + 's';
+
+      var img = document.createElement('img');
+      img.src     = photo.url;
+      img.alt     = photo.uploader;
+      img.loading = 'lazy';
+
+      var overlay  = document.createElement('div');
+      overlay.className = 'photo-item-overlay';
+      var nameSpan = document.createElement('span');
+      nameSpan.className   = 'photo-uploader-name';
+      nameSpan.textContent = photo.uploader;
+      overlay.appendChild(nameSpan);
+
+      item.appendChild(img);
+      item.appendChild(overlay);
+      item.onclick = (function(i) { return function() { openLightbox(i); }; })(idx);
+      grid.appendChild(item);
+    });
+  }
+
+  /* ── 업로드 (Cloudinary → Firestore) ── */
+  async function uploadPhotos() {
+    var name = document.getElementById('uploader-name').value.trim();
+    if (!name) { showToast('이름을 입력해주세요'); return; }
+    if (selectedFiles.length === 0) { showToast('사진을 선택해주세요'); return; }
+
+    var btn         = document.getElementById('upload-btn');
+    var progressWrap = document.getElementById('progress-wrap');
+    var progressBar  = document.getElementById('progress-bar');
+    var progressText = document.getElementById('progress-text');
+
+    btn.disabled = true;
+    progressWrap.classList.add('visible');
+
+    var total = selectedFiles.length;
+    var done  = 0;
+
+    try {
+      for (var i = 0; i < total; i++) {
+        var file = selectedFiles[i];
+        progressText.textContent = total + '장 중 ' + (i + 1) + '장 업로드 중...';
+
+        /* 1) Cloudinary에 사진 업로드 */
+        var formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', CLOUDINARY_PRESET);
+
+        var res = await fetch(
+          'https://api.cloudinary.com/v1_1/' + CLOUDINARY_CLOUD + '/image/upload',
+          { method: 'POST', body: formData }
+        );
+        if (!res.ok) throw new Error('Cloudinary 업로드 실패');
+        var json = await res.json();
+        var url  = json.secure_url;
+
+        /* 2) Firestore에 URL + 업로더 이름 저장 */
+        await db.collection('photos').add({
+          url:       url,
+          uploader:  name,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        done++;
+        progressBar.style.width = (done / total * 100) + '%';
+      }
+
+      showToast('🌸 ' + done + '장이 업로드되었습니다!');
+      selectedFiles = [];
+      renderPreviews();
+      updateUploadBtn();
+      document.getElementById('uploader-name').value = '';
+      document.getElementById('file-input').value    = '';
+
+    } catch (err) {
+      console.error(err);
+      showToast('업로드에 실패했습니다. 다시 시도해주세요.');
+    }
+
+    progressWrap.classList.remove('visible');
+    progressBar.style.width = '0%';
+    btn.disabled = false;
+    updateUploadBtn();
+  }
+
+  /* ── Firestore 실시간 사진 불러오기 ── */
+  db.collection('photos')
+    .orderBy('createdAt', 'desc')
+    .onSnapshot(function(snapshot) {
+      var photos = [];
+      snapshot.forEach(function(doc) {
+        var d    = doc.data();
+        var date = d.createdAt
+          ? new Date(d.createdAt.toMillis()).toLocaleDateString('ko-KR')
+          : '';
+        photos.push({ url: d.url, uploader: d.uploader, date: date, id: doc.id });
+      });
+      renderGallery(photos);
+    }, function(err) {
+      console.error('사진 불러오기 실패:', err);
+      document.getElementById('skeleton-grid').style.display = 'none';
+      document.getElementById('empty-state').style.display   = 'block';
+    });
+
+</script>
+</body>
+</html>
