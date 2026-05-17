@@ -1464,7 +1464,7 @@
 </div><!-- /page-wrap -->
 
 <!-- RSVP MODAL (outside page-wrap for correct full-screen fixed positioning) -->
-<div class="rsvp-modal-overlay" id="rsvp-modal" onclick="closeRsvpOnOverlay(event)">
+<div class="rsvp-modal-overlay" id="rsvp-modal">
   <div class="rsvp-modal">
     <button class="rsvp-modal-close" onclick="closeRsvpModal()">✕</button>
     <div class="rsvp-modal-label">RSVP</div>
@@ -1914,6 +1914,9 @@
   function closeRsvpOnOverlay(e) {
     if (e.target === document.getElementById('rsvp-modal')) closeRsvpModal();
   }
+  document.getElementById('rsvp-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeRsvpModal();
+  });
 
   var rsvpChoice = null;
   function selectRsvp(choice) {

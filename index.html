@@ -4,22 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>김승재 ❤️ 이다형 — 2026.07.29</title>
-<!-- OG / SNS 링크 미리보기 -->
-<meta property="og:type"        content="website">
-<meta property="og:url"         content="https://snowsiro.github.io/sj-dh-wedding.at/">
-<meta property="og:title"       content="김승재 ❤️ 이다형 — 2026.07.29">
-<meta property="og:description" content="저희 결혼식에 초대합니다 💍 2026년 7월 29일, 오스트리아 빈">
-<meta property="og:image"       content="https://snowsiro.github.io/sj-dh-wedding.at/images/img_01.jpg">
-<meta property="og:image:width"  content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale"      content="ko_KR">
-<!-- 카카오톡 추가 지원 -->
-<meta name="description"        content="저희 결혼식에 초대합니다 💍 2026년 7월 29일, 오스트리아 빈">
-<!-- 트위터(X) 카드 -->
-<meta name="twitter:card"       content="summary_large_image">
-<meta name="twitter:title"      content="김승재 ❤️ 이다형 — 2026.07.29">
-<meta name="twitter:description" content="저희 결혼식에 초대합니다 💍 2026년 7월 29일, 오스트리아 빈">
-<meta name="twitter:image"      content="https://snowsiro.github.io/sj-dh-wedding.at/images/img_01.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+KR:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
@@ -1283,7 +1267,7 @@
     data-ko="결혼식에서 직접 찍으신 사진을<br>갤러리에 올려주세요 📷"
     data-en="Upload your photos from the wedding<br>to our shared gallery 📷"
     data-de="Ladet eure Hochzeitsfotos<br>in unsere Galerie hoch 📷">결혼식에서 직접 찍으신 사진을<br>갤러리에 올려주세요 📷</p>
-  <a href="gallery.html?from=index"
+  <a href="gallery.html"
     data-ko="📷 　포토 갤러리 보러가기"
     data-en="📷 　View Photo Gallery"
     data-de="📷 　Zur Fotogalerie"
@@ -1319,7 +1303,7 @@
 </div><!-- /page-wrap -->
 
 <!-- RSVP MODAL (outside page-wrap for correct full-screen fixed positioning) -->
-<div class="rsvp-modal-overlay" id="rsvp-modal" onclick="closeRsvpOnOverlay(event)">
+<div class="rsvp-modal-overlay" id="rsvp-modal">
   <div class="rsvp-modal">
     <button class="rsvp-modal-close" onclick="closeRsvpModal()">✕</button>
     <div class="rsvp-modal-label">RSVP</div>
@@ -1769,6 +1753,10 @@
   function closeRsvpOnOverlay(e) {
     if (e.target === document.getElementById('rsvp-modal')) closeRsvpModal();
   }
+  // overlay 클릭 닫기 - 버블링 문제 방지를 위해 addEventListener 사용
+  document.getElementById('rsvp-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeRsvpModal();
+  });
 
   var rsvpChoice = null;
   function selectRsvp(choice) {
