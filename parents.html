@@ -6,7 +6,7 @@
 <title>김승재 ❤️ 이다형 — 2026.07.29</title>
 <!-- OG / SNS 링크 미리보기 -->
 <meta property="og:type"        content="website">
-<meta property="og:url"         content="https://snowsiro.github.io/sj-dh-wedding.at/">
+<meta property="og:url"         content="https://snowsiro.github.io/sj-dh-wedding.at/parents.html">
 <meta property="og:title"       content="김승재 ❤️ 이다형 — 2026.07.29">
 <meta property="og:description" content="저희 결혼식에 초대합니다 💍 2026년 7월 29일, 오스트리아 빈">
 <meta property="og:image"       content="https://snowsiro.github.io/sj-dh-wedding.at/images/img_01.jpg">
@@ -1007,6 +1007,81 @@
     border-color: transparent;
   }
 
+
+  /* ── ACCOUNT ── */
+  .account {
+    background: var(--warm-white);
+    text-align: center;
+    padding: 4rem 1.5rem;
+  }
+
+  .account-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 360px;
+    margin: 2rem auto 0;
+  }
+
+  .account-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .account-side {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    margin-top: 0.5rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .account-card {
+    background: white;
+    border: 1px solid rgba(184,151,90,0.2);
+    padding: 1.4rem 1.6rem;
+    text-align: center;
+  }
+
+  .account-relation {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--text-light);
+    margin-bottom: 0.3rem;
+  }
+
+  .account-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    margin-bottom: 0.4rem;
+  }
+
+  .account-bank {
+    font-size: 0.75rem;
+    color: var(--text-mid);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+
+  .account-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--text-mid);
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+
+  .account-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold-light);
+    margin: 1.8rem auto;
+    opacity: 0.4;
+  }
+
 </style>
 </head>
 <body>
@@ -1242,6 +1317,67 @@
   </button>
 </section>
 
+
+<!-- ACCOUNT -->
+<section class="account reveal" id="account">
+  <span class="section-label" data-ko="ACCOUNT" data-en="ACCOUNT" data-de="KONTO">ACCOUNT</span>
+  <h2 class="section-title" data-ko="마음 전하실 곳" data-en="Send Your<br>Gift" data-de="Geschenk<br>übermitteln">마음 전하실 곳</h2>
+
+  <div class="account-grid">
+
+    <div class="account-group">
+      <div class="account-side" data-ko="신랑측" data-en="Groom's Family" data-de="Bräutigam">신랑측</div>
+
+      <div class="account-card">
+        <div class="account-relation" data-ko="아버지" data-en="Father" data-de="Vater">아버지</div>
+        <div class="account-name">김영호</div>
+        <div class="account-bank">대구은행</div>
+        <div class="account-number">508-123-313002</div>
+        <button class="copy-btn" onclick="copyAddress('508123313002')">
+          <span data-ko="📋 계좌번호 복사" data-en="📋 Copy Account" data-de="📋 Konto kopieren">📋 계좌번호 복사</span>
+        </button>
+      </div>
+
+      <div class="account-card">
+        <div class="account-relation" data-ko="어머니" data-en="Mother" data-de="Mutter">어머니</div>
+        <div class="account-name">최희정</div>
+        <div class="account-bank">국민은행</div>
+        <div class="account-number">4473-028-302661</div>
+        <button class="copy-btn" onclick="copyAddress('44730283026611')">
+          <span data-ko="📋 계좌번호 복사" data-en="📋 Copy Account" data-de="📋 Konto kopieren">📋 계좌번호 복사</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="account-divider"></div>
+
+    <div class="account-group">
+      <div class="account-side" data-ko="신부측" data-en="Bride's Family" data-de="Braut">신부측</div>
+
+      <div class="account-card">
+        <div class="account-relation" data-ko="아버지" data-en="Father" data-de="Vater">아버지</div>
+        <div class="account-name">이상석</div>
+        <div class="account-bank">신한은행</div>
+        <div class="account-number">110-576-233890</div>
+        <button class="copy-btn" onclick="copyAddress('110576233890')">
+          <span data-ko="📋 계좌번호 복사" data-en="📋 Copy Account" data-de="📋 Konto kopieren">📋 계좌번호 복사</span>
+        </button>
+      </div>
+
+      <div class="account-card">
+        <div class="account-relation" data-ko="어머니" data-en="Mother" data-de="Mutter">어머니</div>
+        <div class="account-name">백정희</div>
+        <div class="account-bank">신한은행</div>
+        <div class="account-number">110-227-684788</div>
+        <button class="copy-btn" onclick="copyAddress('110227684788')">
+          <span data-ko="📋 계좌번호 복사" data-en="📋 Copy Account" data-de="📋 Konto kopieren">📋 계좌번호 복사</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- GUESTBOOK -->
 <section class="guestbook reveal" id="guestbook">
   <span class="section-label" data-ko="GUESTBOOK" data-en="GUESTBOOK" data-de="GÄSTEBUCH">GUESTBOOK</span>
@@ -1283,7 +1419,7 @@
     data-ko="결혼식에서 직접 찍으신 사진을<br>갤러리에 올려주세요 📷"
     data-en="Upload your photos from the wedding<br>to our shared gallery 📷"
     data-de="Ladet eure Hochzeitsfotos<br>in unsere Galerie hoch 📷">결혼식에서 직접 찍으신 사진을<br>갤러리에 올려주세요 📷</p>
-  <a href="gallery.html?from=index"
+  <a href="gallery.html?from=parents"
     data-ko="📷 　포토 갤러리 보러가기"
     data-en="📷 　View Photo Gallery"
     data-de="📷 　Zur Fotogalerie"

@@ -773,7 +773,7 @@
 
   <!-- HEADER -->
   <div class="gallery-header">
-    <a class="back-btn" href="index.html" data-ko="← 청첩장으로" data-en="← Invitation" data-de="← Einladung">← 청첩장으로</a>
+    <a class="back-btn" id="back-btn" href="index.html" data-ko="← 청첩장으로" data-en="← Invitation" data-de="← Einladung">← 청첩장으로</a>
     <span class="header-label">Photo Gallery</span>
     <h1 class="header-title"><span data-ko="우리의" data-en="Our" data-de="Unser">우리의</span> <em><span data-ko="하루" data-en="Day" data-de="Tag">하루</span></em></h1>
     <p class="header-sub">2026 · 07 · 29</p>
@@ -849,7 +849,7 @@
   <div class="gallery-footer">
     <p class="footer-names"><em>Seungjae</em> &amp; <em>Dahyung</em></p>
     <p class="footer-date">2026 · 07 · 29 · WEDNESDAY</p>
-    <a class="footer-back" href="index.html" data-ko="← 청첩장으로 돌아가기" data-en="← Back to Invitation" data-de="← Zurück zur Einladung">← 청첩장으로 돌아가기</a>
+    <a class="footer-back" id="footer-back-btn" href="index.html" data-ko="← 청첩장으로 돌아가기" data-en="← Back to Invitation" data-de="← Zurück zur Einladung">← 청첩장으로 돌아가기</a>
     <div style="margin-top:1.5rem;">
       <button onclick="openAdminLogin()" style="background:none;border:none;color:rgba(255,255,255,0.15);font-size:0.55rem;cursor:pointer;letter-spacing:0.2em;font-family:'Noto Serif KR',serif;">···</button>
     </div>
@@ -909,6 +909,18 @@
   };
 
   function t(key) { return (i18n[key] && i18n[key][currentLang]) || (i18n[key] && i18n[key]['ko']) || ''; }
+
+  // ── 뒤로가기: 어디서 진입했는지 파악 ──
+  (function setBackLinks() {
+    var params = new URLSearchParams(window.location.search);
+    var from   = params.get('from') || 'index';
+    var target = from === 'parents' ? 'parents.html' : 'index.html';
+
+    var backBtn   = document.getElementById('back-btn');
+    var footerBtn = document.getElementById('footer-back-btn');
+    if (backBtn)   backBtn.href   = target;
+    if (footerBtn) footerBtn.href = target;
+  })();
 
   function setLang(lang) {
     currentLang = lang;
