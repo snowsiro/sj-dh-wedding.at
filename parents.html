@@ -1912,10 +1912,13 @@
     document.body.style.overflow = '';
   }
   function closeRsvpOnOverlay(e) {
-    if (e.target === document.getElementById('rsvp-modal')) closeRsvpModal();
+    // 사용하지 않음 - addEventListener로 대체
   }
   document.getElementById('rsvp-modal').addEventListener('click', function(e) {
     if (e.target === this) closeRsvpModal();
+  });
+  document.querySelector('#rsvp-modal .rsvp-modal').addEventListener('click', function(e) {
+    e.stopPropagation();
   });
 
   var rsvpChoice = null;

@@ -1751,11 +1751,14 @@
     document.body.style.overflow = '';
   }
   function closeRsvpOnOverlay(e) {
-    if (e.target === document.getElementById('rsvp-modal')) closeRsvpModal();
+    // 사용하지 않음 - addEventListener로 대체
   }
-  // overlay 클릭 닫기 - 버블링 문제 방지를 위해 addEventListener 사용
+  // overlay 클릭 닫기: stopPropagation으로 내부 버블링 차단
   document.getElementById('rsvp-modal').addEventListener('click', function(e) {
     if (e.target === this) closeRsvpModal();
+  });
+  document.querySelector('#rsvp-modal .rsvp-modal').addEventListener('click', function(e) {
+    e.stopPropagation();
   });
 
   var rsvpChoice = null;
